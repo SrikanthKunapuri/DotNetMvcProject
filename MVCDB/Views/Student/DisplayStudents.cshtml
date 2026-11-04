@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVCDB.Models.Student>
+
+@{
+    ViewBag.Title = "DisplayStudent";
+}
+
+<h2>DisplayStudent</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fees)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Sid)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fees)
+            </td>
+            <td>
+                <img src="~/images/@item.Photo" width="40" height="25" alt="no img" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("View", "DisplayStudent", new { Sid = item.Sid }) |
+                @Html.ActionLink("Edit", "EditStudent", new { Sid = item.Sid }) |
+                @Html.ActionLink("Delete", "DeleteStudent", new { Sid = item.Sid }, new { onclick = "return confirm('Are you sure of deleting the record?')" })
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="6" align="center">
+            @Html.ActionLink("Add New Student", "AddStudent")
+        </td>
+    </tr>
+
+
+</table>
